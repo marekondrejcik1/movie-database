@@ -22,6 +22,7 @@ export const FavouritesPage = () => {
       <Box p={4} gap={2} display="flex" flexDirection="column">
         {movies.map((movie) => (
           <MovieCard
+            key={movie.imdbID}
             movie={{
               Poster: movie.Poster,
               Title: movie.Title,

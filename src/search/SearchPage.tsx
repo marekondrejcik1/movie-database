@@ -3,30 +3,34 @@ import React, { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 import { MovieCard } from "../shared/MovieCard";
 import { MovieSearchResponse } from "../models/MovieSearchResponse";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { setPage, setSearchResponse } from "../store/moviesSlice";
 
 export const SearchPage = () => {
   const [searchText, setSearchText] = useState("");
   const [debouncedQuery] = useDebounce(searchText, 1000);
-  const [searchResponse, setSearchResponse] = useState<MovieSearchResponse>();
-  const [page, setPage] = useState(1);
+
+  const dispatch = useAppDispatch();
+  const currentPage = useAppSelector((state) => state.movies.currentPage);
+  const searchResponse = useAppSelector((state) => state.movies.searchResponse);
 
   useEffect(() => {
     if (debouncedQuery !== "") {
       fetch(
-        `http://www.omdbapi.com/?apikey=6249d37&s=${debouncedQuery}&page=${page}`
+        `http://www.omdbapi.com/?apikey=6249d37&s=${debouncedQuery}&page=${currentPage}`
       )
         .then((res) => res.json())
         .then((data: MovieSearchResponse) => {
-          setSearchResponse(data);
+          dispatch(setSearchResponse(data));
         });
     }
-  }, [debouncedQuery, page]);
+  }, [debouncedQuery, currentPage]);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    setPage(value);
+    dispatch(setPage(value));
   };
 
   return (
@@ -51,7 +55,7 @@ export const SearchPage = () => {
           marginBottom={4}
         >
           {searchResponse?.Search?.map((movie) => (
-            <MovieCard movie={movie} />
+            <MovieCard key={movie.imdbID} movie={movie} />
           ))}
         </Box>
       )}
@@ -59,7 +63,7 @@ export const SearchPage = () => {
       {searchResponse?.totalResults && (
         <Pagination
           count={Math.ceil(Number(searchResponse?.totalResults) / 10)}
-          page={page}
+          page={currentPage}
           onChange={handlePageChange}
         />
       )}

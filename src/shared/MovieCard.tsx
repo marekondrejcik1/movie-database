@@ -10,14 +10,17 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
         to={`/movie/${movie.imdbID}`}
         sx={{ display: "flex", width: 700 }}
       >
-        {movie.Poster && (
-          <img
-            src={movie.Poster}
-            height={140}
-            width={100}
-            style={{ objectFit: "cover" }}
-          />
-        )}
+        <img
+          src={
+            movie.Poster === "N/A"
+              ? "https://placehold.co/100x140?text=No+Photo"
+              : movie.Poster
+          }
+          height={140}
+          width={100}
+          style={{ objectFit: "cover" }}
+        />
+
         <Box p={1.5} flexGrow={1}>
           <Typography component="div" variant="h5">
             {movie.Title}

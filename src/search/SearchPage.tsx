@@ -26,11 +26,9 @@ export const SearchPage = () => {
     dispatch(setPage(value));
   };
 
-  const handleSearchInputChange = () => {
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setPage(1);
-      setSearchText(e.target.value);
-    };
+  const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPage(1);
+    setSearchText(e.target.value);
   };
 
   return (

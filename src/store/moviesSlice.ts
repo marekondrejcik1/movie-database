@@ -1,6 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { MovieSearchResponse } from "../models/MovieSearchResponse";
-import { RootState } from "./store";
 
 interface MoviesState {
   searchResponse?: MovieSearchResponse;

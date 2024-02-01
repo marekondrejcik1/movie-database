@@ -37,7 +37,7 @@ const MovieDetailPage = () => {
         }
       }
     }
-  }, [movieData]);
+  }, [movieData, id]);
 
   useEffect(() => {
     if (id) {
@@ -147,6 +147,7 @@ const MovieDetailPage = () => {
           </Box>
           {movieData.Poster && (
             <img
+              alt="movie poster"
               src={movieData.Poster}
               style={{ width: 400, objectFit: "contain" }}
             />

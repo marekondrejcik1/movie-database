@@ -11,6 +11,7 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
         sx={{ display: "flex", width: 700 }}
       >
         <img
+          alt="movie poster"
           src={
             movie.Poster === "N/A"
               ? "https://placehold.co/100x140?text=No+Photo"

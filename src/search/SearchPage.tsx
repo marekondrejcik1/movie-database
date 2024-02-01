@@ -1,5 +1,5 @@
 import { Box, Pagination, TextField } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDebounce } from "use-debounce";
 import { MovieCard } from "../shared/MovieCard";
 import { useAppSelector, useAppDispatch } from "../store/hooks";

@@ -5,7 +5,7 @@ import { MovieCard } from "../shared/MovieCard";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { fetchMovies, setPage, setSearchText } from "../store/moviesSlice";
 
-export const SearchPage = () => {
+const SearchPage = () => {
   const dispatch = useAppDispatch();
   const currentPage = useAppSelector((state) => state.movies.currentPage);
   const searchResponse = useAppSelector((state) => state.movies.searchResponse);
@@ -73,3 +73,5 @@ export const SearchPage = () => {
     </Box>
   );
 };
+
+export default SearchPage;

@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { STORAGE_KEY } from "../models/contants";
 import { MovieDetailResponse } from "../models/MovieDetailResponse";
 
-export const MovieDetailPage = () => {
+const MovieDetailPage = () => {
   let { id } = useParams();
   const [movieData, setMovieData] = useState<MovieDetailResponse | null>();
   const [isFavourite, setIsFavourite] = useState(false);
@@ -164,3 +164,5 @@ export const MovieDetailPage = () => {
 
   return <Box p={4}>Error while loading data</Box>;
 };
+
+export default MovieDetailPage;

@@ -1,11 +1,13 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { MovieDetailPage } from "./movie-detail/MovieDetailPage";
-import { SearchPage } from "./search/SearchPage";
-import { FavouritesPage } from "./favourites/FavouritesPage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Header } from "./layout/Header";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
+import { Suspense, lazy } from "react";
+
+const SearchPage = lazy(() => import("./search/SearchPage"));
+const MovieDetailPage = lazy(() => import("./movie-detail/MovieDetailPage"));
+const FavouritesPage = lazy(() => import("./favourites/FavouritesPage"));
 
 function App() {
   return (
@@ -15,9 +17,30 @@ function App() {
           <Header />
 
           <Routes>
-            <Route path="/" element={<SearchPage />} />
-            <Route path="/movie/:id" element={<MovieDetailPage />} />
-            <Route path="/favourites" element={<FavouritesPage />} />
+            <Route
+              path="/"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <SearchPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/movie/:id"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <MovieDetailPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/favourites"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <FavouritesPage />
+                </Suspense>
+              }
+            />
           </Routes>
         </>
       </Router>

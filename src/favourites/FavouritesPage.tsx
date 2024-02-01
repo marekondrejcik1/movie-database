@@ -4,7 +4,7 @@ import { STORAGE_KEY } from "../models/contants";
 import { MovieCard } from "../shared/MovieCard";
 import { Box } from "@mui/material";
 
-export const FavouritesPage = () => {
+const FavouritesPage = () => {
   const [movies, setMovies] = useState<MovieDetailResponse[]>();
 
   useEffect(() => {
@@ -38,3 +38,5 @@ export const FavouritesPage = () => {
 
   return <Box p={4}>No favourites</Box>;
 };
+
+export default FavouritesPage;

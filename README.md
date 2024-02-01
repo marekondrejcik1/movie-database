@@ -1,3 +1,14 @@
+# Movie Database
+
+Instructions for running the app can be found below (standard Create React App process).
+
+There are 3 main screens - Movie Search, Movie Detail and Favourites. Navigation is implemented using React Router. Favourites are saved in local storage.
+
+Some screenshots:
+<img width="1005" alt="Screenshot 2024-02-01 at 10 31 24" src="https://github.com/marekondrejcik1/movie-database/assets/12859537/9916d467-970d-4784-9cda-cdffaf65fbc7">
+<img width="1001" alt="Screenshot 2024-02-01 at 10 31 40" src="https://github.com/marekondrejcik1/movie-database/assets/12859537/cfc1a5c3-5287-4bd5-ab39-ffba0414d14e">
+<img width="1017" alt="Screenshot 2024-02-01 at 10 31 55" src="https://github.com/marekondrejcik1/movie-database/assets/12859537/3f61e617-4047-4084-aaaf-ae9c25dd8493">
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

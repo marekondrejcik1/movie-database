@@ -6,11 +6,13 @@ interface MoviesState {
   searchResponse?: MovieSearchResponse;
   currentPage: number;
   status?: "loading" | "succeeded" | "failed";
+  searchText: string;
 }
 
 const initialState: MoviesState = {
   searchResponse: undefined,
   currentPage: 1,
+  searchText: "",
 };
 
 export const fetchMovies = createAsyncThunk(
@@ -36,6 +38,9 @@ export const moviesSlice = createSlice({
     setPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
     },
+    setSearchText: (state, action: PayloadAction<string>) => {
+      state.searchText = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -52,6 +57,7 @@ export const moviesSlice = createSlice({
   },
 });
 
-export const { setSearchResponse, setPage } = moviesSlice.actions;
+export const { setSearchResponse, setPage, setSearchText } =
+  moviesSlice.actions;
 
 export default moviesSlice.reducer;

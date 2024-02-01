@@ -3,16 +3,15 @@ import React, { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 import { MovieCard } from "../shared/MovieCard";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
-import { fetchMovies, setPage } from "../store/moviesSlice";
+import { fetchMovies, setPage, setSearchText } from "../store/moviesSlice";
 
 export const SearchPage = () => {
-  const [searchText, setSearchText] = useState("");
-  const [debouncedQuery] = useDebounce(searchText, 1000);
-
   const dispatch = useAppDispatch();
   const currentPage = useAppSelector((state) => state.movies.currentPage);
   const searchResponse = useAppSelector((state) => state.movies.searchResponse);
   const status = useAppSelector((state) => state.movies.status);
+  const searchText = useAppSelector((state) => state.movies.searchText);
+  const [debouncedQuery] = useDebounce(searchText, 1000);
 
   useEffect(() => {
     if (debouncedQuery !== "") {
@@ -27,8 +26,9 @@ export const SearchPage = () => {
   };
 
   const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPage(1);
-    setSearchText(e.target.value);
+    // resets pagination to display the first page
+    dispatch(setPage(1));
+    dispatch(setSearchText(e.target.value));
   };
 
   return (
